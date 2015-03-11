@@ -1,0 +1,44 @@
+{
+  "name": "jvc",
+  "version": "0.1.0",
+  "description": "Node.js jeuxvideo.com API client.",
+  "homepage": "https://github.com/valeriangalliat/jvc",
+  "license": {
+    "type": "Unlicense",
+    "url": "http://unlicense.org/"
+  },
+  "author": {
+    "name": "Valérian Galliat",
+    "url": "http://val.codejam.info/"
+  },
+  "files": [
+    "README.md",
+    "UNLICENSE",
+    "index.js",
+    "pm.js",
+    "user.js",
+    "util.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valeriangalliat/jvc.git"
+  },
+  "dependencies": {
+    "babel-runtime": "^4.5.0",
+    "bind-late": "^1.0.1",
+    "crypto-promise": "^1.0.0",
+    "ent": "^2.2.0",
+    "es6-denodeify": "^0.1.1",
+    "extend": "^2.0.0",
+    "moment": "^2.9.0",
+    "request": "^2.53.0",
+    "xml2js": "^0.4.5"
+  },
+  "devDependencies": {
+    "babel": "^4.5.0"
+  },
+  "scripts": {
+    "build": "babel src --out-dir .",
+    "prepublish": "$npm_package_scripts_build"
+  }
+}

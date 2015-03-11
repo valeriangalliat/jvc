@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "cli-table": "^0.3.1",
+    "es6-denodeify": "^0.1.1",
+    "inquirer": "^0.8.0",
+    "promisepipe": "^1.0.1",
+    "request": "^2.53.0"
+  },
+  "devDependencies": {
+    "babel": "^4.5.0"
+  },
+  "scripts": {
+    "start": "babel-node index.js"
+  }
+}
