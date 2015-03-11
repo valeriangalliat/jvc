@@ -1,5 +1,4 @@
-jvc
-===
+# jvc [![npm version](http://img.shields.io/npm/v/jvc.svg?style=flat-square)](https://www.npmjs.org/package/jvc)
 
 > Node.js [jeuxvideo.com][] [API] client.
 
