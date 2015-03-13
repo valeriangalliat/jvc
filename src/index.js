@@ -73,4 +73,7 @@ export default bindLate({
       page: _.api.page,
     }),
   },
+
+  // Friendly alias.
+  login: _ => _.user.login,
 })
