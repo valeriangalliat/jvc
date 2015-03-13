@@ -1,10 +1,9 @@
-const extend = require('extend')
 const { hash } = require('crypto-promise')
 
 export const denodeify = require('es6-denodeify')(Promise)
 
 export const err = (message, props) =>
-  extend(new Error(message), props)
+  Object.assign(new Error(message), props)
 
 export const xml = denodeify(require('xml2js').parseString)
 

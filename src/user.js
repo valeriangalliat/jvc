@@ -1,4 +1,3 @@
-const extend = require('extend')
 const qs = require('querystring').parse
 const { err, md5 } = require('./util')
 
@@ -19,7 +18,7 @@ export const login = ({ self, page, request, getAuthParams }) =>
     const response = await request({
       method: 'POST',
       url: page('mon_compte/connexion.php'),
-      form: extend({}, await getAuthParams({ user, pass }), params),
+      form: Object.assign({}, await getAuthParams({ user, pass }), params),
     })
 
     if (!response.body.connexion.erreur) {
@@ -44,7 +43,7 @@ export const login = ({ self, page, request, getAuthParams }) =>
           self.user.login({
             user,
             pass,
-            params: extend({ code }, params),
+            params: Object.assign({ code }, params),
           }),
       })
     }
