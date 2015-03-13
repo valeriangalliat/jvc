@@ -62,7 +62,7 @@ export default bindLate({
 
   pm: {
     getFirstPage: _ => pm.getFirstPage({
-      requestCookie: _.api.requestCookie,
+      request: _.api.requestCookie,
       page: _.api.page,
     }),
   },
