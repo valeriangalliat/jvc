@@ -51,7 +51,7 @@ async () => {
 
   // const connectedJvc = jvc.override({
   //   user: {
-  //     // cookie: 'the cookie you stored',
+  //     cookie: 'the cookie you stored',
   //   },
   // })
 
