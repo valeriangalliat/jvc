@@ -78,17 +78,22 @@ more informations about this.
 
 ### Private messages
 
-Currently, only retrieving the first page is supported.
+Currently, only listing threads is supported.
 
 ```js
-const messages = await connectedJvc.pm.getFirstPage()
+const list = await connectedJvc.pm.list()
+// const list = await connectedJvc.pm.list({ page: 2 })
 
-messages.forEach(message => {
-  // message.id
-  // message.subject
-  // message.author
-  // message.date
-  // message.isRead
+// list.count
+// list.page
+// list.unread
+
+list.threads.forEach(thread => {
+  // thread.id
+  // thread.subject
+  // thread.author
+  // thread.date
+  // thread.isRead
 })
 ```
 

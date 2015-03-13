@@ -52,17 +52,17 @@ async () => {
   // Keep cookie for next run.
   fs.writeFile('cookie.txt', connectedJvc.user.cookie)
 
-  const messages = await connectedJvc.pm.getFirstPage()
+  const threads = (await connectedJvc.pm.list()).threads
 
   const table = new Table({
     head: ['R', 'From', 'Subject', 'Date'],
   });
 
-  table.push(...messages.map(m => [
-    m.isRead ? 'Y' : 'N',
-    m.author,
-    m.subject,
-    m.date.toISOString().substr(0, 10),
+  table.push(...threads.map(t => [
+    t.isRead ? 'Y' : 'N',
+    t.author,
+    t.subject,
+    t.date.toISOString().substr(0, 10),
   ]))
 
   console.log(table.toString())
