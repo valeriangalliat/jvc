@@ -1,3 +1,6 @@
+const { denodeify } = require('../src/util')
+const jvc = require('../src')
+
 const chalk = require('chalk')
 const cp = require('child_process')
 const fs = require('fs')
@@ -5,7 +8,8 @@ const inquirer = require('inquirer')
 const pipe = require('promisepipe')
 const request = require('request')
 const Table = require('cli-table');
-const jvc = require('../src')
+
+const readFile = denodeify(fs.readFile)
 
 const prompt = (...args) =>
   new Promise(
@@ -34,22 +38,19 @@ const handleCaptcha = async err => {
 }
 
 async () => {
-  const user = await prompt([
-    { name: 'user', message: 'User' },
-    { type: 'password', name: 'pass', message: 'Pass' },
-  ])
+  // Get existing cookie or prompt for credentials.
+  const user = await readFile('cookie.txt', 'utf8')
+    .then(cookie => ({ cookie }), () => prompt([
+      { name: 'user', message: 'User' },
+      { type: 'password', name: 'pass', message: 'Pass' },
+    ]))
 
-  const connectedJvc = await jvc.login(user)
-    .then(x => x, handleCaptcha)
+  const connectedJvc = user.cookie
+    ? jvc.override({ user })
+    : await jvc.login(user).then(null, handleCaptcha)
 
-  // You can store and reuse the cookie to avoid the captcha.
-  // console.log(connectedJvc.user.cookie)
-
-  // const connectedJvc = jvc.override({
-  //   user: {
-  //     cookie: 'the cookie you stored',
-  //   },
-  // })
+  // Keep cookie for next run.
+  fs.writeFile('cookie.txt', connectedJvc.user.cookie)
 
   const messages = await connectedJvc.pm.getFirstPage()
 
