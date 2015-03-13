@@ -13,11 +13,11 @@ export const getAuthParams = ({ salt }) =>
   }
 
 // Return a new API with bound cookie (might fail for captcha).
-export const login = ({ self, page, request, getAuthParams }) =>
+export const login = ({ self, request, getAuthParams }) =>
   async ({ user, pass, params = {} }) => {
     const response = await request({
       method: 'POST',
-      url: page('mon_compte/connexion.php'),
+      uri: 'mon_compte/connexion.php',
       form: Object.assign({}, await getAuthParams({ user, pass }), params),
     })
 

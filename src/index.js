@@ -38,15 +38,13 @@ export default bindLate({
       pass: _.api._pass
     }),
 
-    requestXml: _ => api.requestXml({ request: _.api.requestAuth }),
+    requestPage: _ => api.requestPage({ request: _.api.requestAuth, base: _.api.base }),
+    requestXml: _ => api.requestXml({ request: _.api.requestPage }),
 
     requestCookie: _ => api.requestCookie({
       request: _.api.requestXml,
       cookie: _.user.cookie,
     }),
-
-    // Apply base path to given page.
-    page: _ => path => _.api.base + path,
   },
 
   user: {
