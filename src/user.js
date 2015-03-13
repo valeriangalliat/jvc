@@ -1,6 +1,6 @@
 const extend = require('extend')
 const qs = require('querystring').parse
-const { err, xml, md5 } = require('./util')
+const { err, md5 } = require('./util')
 
 export const getAuthParams = ({ salt }) =>
   async ({ user, pass }) => {
@@ -22,19 +22,17 @@ export const login = ({ self, page, request, getAuthParams }) =>
       form: extend({}, await getAuthParams({ user, pass }), params),
     })
 
-    const data = await xml(response.body)
-
-    if (!data.connexion.erreur) {
+    if (!response.body.connexion.erreur) {
       return self.override({
         user: {
           user,
           pass,
-          cookie: data.connexion.cookie[0],
+          cookie: response.body.connexion.cookie[0],
         },
       })
     }
 
-    const e = data.connexion.erreur[0]
+    const e = response.body.connexion.erreur[0]
     const params = qs(e.params_form[0])
 
     if (e.captcha) {

@@ -1,8 +1,7 @@
 const bindLate = require('bind-late')
-const extend = require('extend')
-const request = require('request')
 
 const { denodeify } = require('./util')
+const api = require('./api')
 const user = require('./user')
 const pm = require('./pm')
 
@@ -33,20 +32,13 @@ export default bindLate({
     _user: _ => _.api.user || _.api._client[1],
     _pass: _ => _.api.pass || _.api._client[2],
 
-    // Request with bound credentials, returning a promise.
-    request: _ => denodeify(request.defaults({
-      auth: {
-        user: _.api._user,
-        pass: _.api._pass,
-      },
-    })),
+    requestAuth: _ => api.requestAuth({ user: _.api._user, pass: _.api._pass }),
+    requestXml: _ => api.requestXml({ request: _.api.requestAuth }),
 
-    // Request with bound cookie.
-    requestCookie: _ => async arg =>
-      await _.api.request(extend(
-        { headers: { cookie: _.user.cookie } },
-        typeof arg === 'string' ? { url: arg } : arg
-      )),
+    requestCookie: _ => api.requestCookie({
+      request: _.api.requestXml,
+      cookie: _.user.cookie,
+    }),
 
     // Apply base path to given page.
     page: _ => path => _.api.base + path,
@@ -58,7 +50,7 @@ export default bindLate({
     login: _ => user.login({
       self: _,
       page: _.api.page,
-      request: _.api.request,
+      request: _.api.requestXml,
       getAuthParams: _.user.getAuthParams,
     }),
   },

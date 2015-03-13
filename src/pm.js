@@ -1,6 +1,5 @@
 const ent = require('ent')
 const moment = require('moment')
-const { xml } = require('./util')
 
 // Get first page of private messages.
 export const getFirstPage = ({ requestCookie, page }) =>
@@ -10,13 +9,11 @@ export const getFirstPage = ({ requestCookie, page }) =>
       qs: { page: 1 }, // Optional for first page.
     })
 
-    const data = await xml(response.body)
-
     // data.message_recus.nb_message: int (total)
     // data.message_recus.page[0]: int
     // data.message_recus.nonlu[0]: int
 
-    return data.message_recus.message
+    return response.body.message_recus.message
       .map(m => ({
         id: m.id[0],
         subject: ent.decode(m.sujet[0]),
