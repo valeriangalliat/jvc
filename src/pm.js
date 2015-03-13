@@ -3,7 +3,7 @@ const moment = require('moment')
 
 // Get first page of private messages.
 export const getFirstPage = ({ request }) =>
-  async params => {
+  async () => {
     const response = await request({
       uri: 'messages-prives/boite-reception_ws.php',
       qs: { page: 1 }, // Optional for first page.
