@@ -35,9 +35,13 @@ export const login = ({ self, page, request, getAuthParams }) =>
     const e = data.connexion.erreur[0]
     const params = qs(e.params_form[0])
 
-    throw err('Captcha required.', {
-      captcha: e.captcha[0],
-      params,
-      retry: code => self.user.login(extend({ code }, params)),
-    })
+    if (e.captcha) {
+      throw err('Captcha required.', {
+        captcha: e.captcha[0],
+        params,
+        retry: code => self.user.login(extend({ code }, params)),
+      })
+    }
+
+    throw err(`Login error: ${e.texte_erreur[0]}`)
   }
