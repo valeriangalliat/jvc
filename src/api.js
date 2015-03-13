@@ -1,8 +1,11 @@
 const { denodeify, xml } = require('./util')
-const request = Object.assign(denodeify(require('request')), require('request'))
+const request = require('request')
 
-// Promisified request with bound credentials.
-export const requestAuth = ({ user, pass }) =>
+// Promisified request.
+export const requestPromise = Object.assign(denodeify(request), request)
+
+// Request with bound credentials.
+export const requestAuth = ({ request, user, pass }) =>
   request.defaults({
     auth: { user, pass },
   })

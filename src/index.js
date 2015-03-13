@@ -32,7 +32,12 @@ export default bindLate({
     _user: _ => _.api.user || _.api._client[1],
     _pass: _ => _.api.pass || _.api._client[2],
 
-    requestAuth: _ => api.requestAuth({ user: _.api._user, pass: _.api._pass }),
+    requestAuth: _ => api.requestAuth({
+      request: api.requestPromise,
+      user: _.api._user,
+      pass: _.api._pass
+    }),
+
     requestXml: _ => api.requestXml({ request: _.api.requestAuth }),
 
     requestCookie: _ => api.requestCookie({
