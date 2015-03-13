@@ -80,21 +80,26 @@ more informations about this.
 
 Currently, only listing threads is supported.
 
+#### List
+
 ```js
+// Get first page.
 const list = await connectedJvc.pm.list()
-// const list = await connectedJvc.pm.list({ page: 2 })
 
-// list.count
-// list.page
-// list.unread
+// list:
+//   count: Number
+//   page: Number
+//   unread: Number
+//   threads:
+//     - id: Number
+//       subject: String
+//       author: String
+//       date: Date
+//       isRead: Boolean
+//
 
-list.threads.forEach(thread => {
-  // thread.id
-  // thread.subject
-  // thread.author
-  // thread.date
-  // thread.isRead
-})
+// Get second page.
+const next = await connectedJvc.pm.list({ page: 2 })
 ```
 
 Demo
