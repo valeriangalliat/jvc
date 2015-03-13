@@ -1,5 +1,7 @@
 const ent = require('ent')
 const moment = require('moment')
+const cheerio = require('cheerio')
+const { err } = require('./util')
 
 // List private messages (paginated).
 export const list = ({ request }) =>
@@ -24,5 +26,28 @@ export const list = ({ request }) =>
           date: moment(m.date[0], 'DD/MM/YYYY - HH:mm:ss').toDate(),
           isRead: m.etat[0] === 'lu',
         })),
+    }
+  }
+
+// Get thread messages (offset pagination).
+export const thread = ({ request, parsePosts }) =>
+  async ({ id, offset = 0 }) => {
+    const response = await request({
+      uri: 'messages-prives/message_ws.php',
+      qs: { id_discussion: id, last_position_message: offset },
+    })
+
+    const d = response.body.discussion
+
+    if (d.erreur) {
+      throw err(d.erreur[0].texte_erreur[0])
+    }
+
+    return {
+      subject: d.titre[0],
+      members: d.participant.map(p => p.pseudo),
+      count: Number(d.nb_message[0]), //Total number of messages.
+      next: Number(d.last_position_message[0]), // Give this as `offset` for next page.
+      messages: parsePosts(d.contenu_discussion[0]),
     }
   }

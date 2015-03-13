@@ -26,6 +26,7 @@
   "dependencies": {
     "babel-runtime": "^4.5.0",
     "bind-late": "^1.0.1",
+    "cheerio": "^0.18.0",
     "crypto-promise": "^1.0.0",
     "ent": "^2.2.0",
     "es6-denodeify": "^0.1.1",

@@ -78,8 +78,6 @@ more informations about this.
 
 ### Private messages
 
-Currently, only listing threads is supported.
-
 #### List
 
 ```js
@@ -100,6 +98,30 @@ const list = await connectedJvc.pm.list()
 
 // Get second page.
 const next = await connectedJvc.pm.list({ page: 2 })
+```
+
+#### Thread
+
+```js
+// Get the last 5 messages of a thread (ID from previous list).
+const thread = await connectedJvc.pm.thread({ id: list.threads[0].id })
+
+// thread:
+//   subject: String
+//   members: [String]
+//   count: Number
+//   next: Number
+//   messages:
+//     - image: String
+//       author: String
+//       date: Date
+//       post: String
+
+// Get next 10 messages.
+const next = await connectedJvc.pm.thread({
+  id: list.threads[0].id,
+  offset: thread.next,
+})
 ```
 
 Demo

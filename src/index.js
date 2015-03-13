@@ -4,6 +4,7 @@ const { denodeify } = require('./util')
 const api = require('./api')
 const user = require('./user')
 const pm = require('./pm')
+const post = require('./post')
 
 export default bindLate({
 
@@ -61,7 +62,14 @@ export default bindLate({
     list: _ => pm.list({
       request: _.api.requestCookie,
     }),
+
+    thread: _ => pm.thread({
+      request: _.api.requestCookie,
+      parsePosts: _.parsePosts,
+    }),
   },
+
+  parsePosts: post.parsePosts,
 
   // Friendly alias.
   login: _ => _.user.login,
