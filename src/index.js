@@ -53,11 +53,7 @@ export default bindLate({
   },
 
   user: {
-    getAuthParams: _ => user.getAuthParams({
-      salt: _.api.salt,
-      user: _.user.user,
-      pass: _.user.pass,
-    }),
+    getAuthParams: _ => user.getAuthParams({ salt: _.api.salt }),
 
     login: _ => user.login({
       self: _,

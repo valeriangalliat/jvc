@@ -43,11 +43,6 @@ All the code examples assume to be run in an ES7 asynchronous function.
 ### Login
 
 ```js
-// Configure an user.
-const userJvc = jvc.override({
-  user: { user: 'foo', pass: 'bar' },
-})
-
 // Need to handle captcha prompts.
 const handleCaptcha = async err => {
   if (!err.captcha) {
@@ -61,7 +56,7 @@ const handleCaptcha = async err => {
     .then(null, handleCaptcha) // Recursively ask for captcha.
 }
 
-const connectedJvc = await userJvc.login()
+const connectedJvc = await jvc.login({ user: 'foo', pass: 'bar' })
   .then(null, handleCaptcha)
 
 // You can then call methods that require connection on `connectedJvc`.

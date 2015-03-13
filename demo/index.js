@@ -39,11 +39,7 @@ async () => {
     { type: 'password', name: 'pass', message: 'Pass' },
   ])
 
-  const userJvc = jvc.override({
-    user,
-  })
-
-  const connectedJvc = await userJvc.user.login()
+  const connectedJvc = await jvc.login(user)
     .then(x => x, handleCaptcha)
 
   // You can store and reuse the cookie to avoid the captcha.
