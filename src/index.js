@@ -52,7 +52,6 @@ export default bindLate({
 
     login: _ => user.login({
       self: _,
-      page: _.api.page,
       request: _.api.requestXml,
       getAuthParams: _.user.getAuthParams,
     }),
@@ -61,7 +60,6 @@ export default bindLate({
   pm: {
     getFirstPage: _ => pm.getFirstPage({
       request: _.api.requestCookie,
-      page: _.api.page,
     }),
   },
 
