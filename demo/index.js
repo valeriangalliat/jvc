@@ -7,7 +7,7 @@ const fs = require('fs')
 const inquirer = require('inquirer')
 const pipe = require('promisepipe')
 const request = require('request')
-const Table = require('cli-table');
+const Table = require('cli-table')
 
 const readFile = denodeify(fs.readFile)
 
@@ -56,7 +56,7 @@ async () => {
 
   const table = new Table({
     head: ['R', 'From', 'Subject', 'Date'],
-  });
+  })
 
   table.push(...threads.map(t => [
     t.isRead ? 'Y' : 'N',
