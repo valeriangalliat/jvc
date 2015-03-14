@@ -44,6 +44,7 @@ export const thread = ({ request, parsePosts }) =>
     }
 
     return {
+      id,
       subject: d.titre[0],
       members: d.participant.map(p => p.pseudo),
       count: Number(d.nb_message[0]), //Total number of messages.

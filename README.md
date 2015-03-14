@@ -107,6 +107,7 @@ const next = await connectedJvc.pm.list({ page: 2 })
 const thread = await connectedJvc.pm.thread({ id: list.threads[0].id })
 
 // thread:
+//   id: Number
 //   subject: String
 //   members: [String]
 //   count: Number
