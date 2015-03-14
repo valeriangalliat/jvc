@@ -49,6 +49,6 @@ export const thread = ({ request, parsePosts }) =>
       members: d.participant.map(p => p.pseudo),
       count: Number(d.nb_message[0]), //Total number of messages.
       next: Number(d.last_position_message[0]), // Give this as `offset` for next page.
-      messages: parsePosts(d.contenu_discussion[0]),
+      messages: parsePosts(d.contenu_discussion[0]).reverse(), // Last posts first.
     }
   }
