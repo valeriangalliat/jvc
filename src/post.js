@@ -26,9 +26,9 @@ const parseDate = date =>
   ).toDate()
 
 const parsePost = $post => {
-  // Replace smileys with raw code.
-  $post.find('[data-code]').each(function () {
-    $(this).replaceWith(this.attribs['data-code'])
+  // Show alternative text for images.
+  $post.find('[alt]').each(function () {
+    $(this).replaceWith(this.attribs['alt'])
   })
 
   return $post.text()
