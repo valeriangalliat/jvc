@@ -1,4 +1,4 @@
-const { denodeify, xml } = require('./util')
+const { denodeify, err, xml } = require('./util')
 const request = require('request')
 const util = require('request/lib/helpers')
 
@@ -38,7 +38,12 @@ export const requestXml = ({ request }) =>
   )
 
 // Request with bound cookie.
-export const requestCookie = ({ request, cookie }) =>
-  request.defaults({
+export const requestCookie = ({ request, cookie }) => {
+  if (!cookie) {
+    throw err('You must be logged in.')
+  }
+
+  return request.defaults({
     headers: { cookie },
   })
+}
