@@ -3,7 +3,7 @@ const { hash } = require('crypto-promise')
 export const denodeify = require('es6-denodeify')(Promise)
 
 export const err = (message, props) =>
-  Object.assign(new Error(message), props)
+  Object.assign(new Error(message), { jvc: true }, props)
 
 export const xml = denodeify(require('xml2js').parseString)
 
