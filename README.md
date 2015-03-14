@@ -125,7 +125,16 @@ const next = await connectedJvc.pm.thread({
 })
 ```
 
-Demo
-----
+Example
+-------
 
-See the [demo](demo) directory for a cool interactive example.
+See the [jvc-cli] project for a concrete usage example. Or if you just
+want an interactive demo:
+
+```js
+npm install -g jvc-cli
+jvc login
+jvc pm
+```
+
+[jvc-cli]: https://github.com/valeriangalliat/jvc-cli
