@@ -2,7 +2,7 @@
 
 > Node.js [jeuxvideo.com][] [API] client.
 
-[jeuxvideo.com]: http://www.jeuxvideo.com/
+[jeuxvideo.com]: https://www.jeuxvideo.com/
 [API]: https://wiki.jvflux.com/Documentation_de_l'API_Jeuxvideo.com
 
 Caution
