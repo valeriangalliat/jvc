@@ -1,6 +1,5 @@
 const bindLate = require('bind-late')
 
-const { denodeify } = require('./util')
 const api = require('./api')
 const user = require('./user')
 const pm = require('./pm')
@@ -14,7 +13,7 @@ export default bindLate({
     ['Android 2.0.3', 'app_and_gnw', 'FC?4554?'],
     ['Android 2.5', 'app_and_ms', 'D9!mVR4c'],
     ['Android MP', 'app_ag_jvmp', 'LXnb45=d#'],
-    ['Android Tab' ,'nex12sz', 'GT4!V2cT'],
+    ['Android Tab', 'nex12sz', 'GT4!V2cT'],
     ['iPhone', 'app_ios_nw', 'W!P45-R'],
     ['iPad', 'ip45de', 'XpD5!FT'],
   ],
