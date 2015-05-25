@@ -3,10 +3,7 @@
   "version": "0.2.1",
   "description": "Node.js jeuxvideo.com API client.",
   "homepage": "https://github.com/valeriangalliat/jvc",
-  "license": {
-    "type": "Unlicense",
-    "url": "http://unlicense.org/"
-  },
+  "license": "Unlicense",
   "author": {
     "name": "Valérian Galliat",
     "url": "http://val.codejam.info/"
