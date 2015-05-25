@@ -1,6 +1,6 @@
 {
   "name": "jvc",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Node.js jeuxvideo.com API client.",
   "homepage": "https://github.com/valeriangalliat/jvc",
   "license": "Unlicense",
