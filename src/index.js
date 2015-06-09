@@ -15,7 +15,7 @@ export default bindLate({
     ['Android MP', 'app_ag_jvmp', 'LXnb45=d#'],
     ['Android Tab', 'nex12sz', 'GT4!V2cT'],
     ['iPhone', 'app_ios_nw', 'W!P45-R'],
-    ['iPad', 'ip45de', 'XpD5!FT'],
+    ['iPad', 'ip45de', 'XpD5!FT']
   ],
 
   api: {
@@ -43,8 +43,8 @@ export default bindLate({
 
     requestCookie: _ => api.requestCookie({
       request: _.api.requestXml,
-      cookie: _.user.cookie,
-    }),
+      cookie: _.user.cookie
+    })
   },
 
   user: {
@@ -53,23 +53,23 @@ export default bindLate({
     login: _ => user.login({
       self: _,
       request: _.api.requestXml,
-      getAuthParams: _.user.getAuthParams,
-    }),
+      getAuthParams: _.user.getAuthParams
+    })
   },
 
   pm: {
     list: _ => pm.list({
-      request: _.api.requestCookie,
+      request: _.api.requestCookie
     }),
 
     thread: _ => pm.thread({
       request: _.api.requestCookie,
-      parsePosts: _.parsePosts,
-    }),
+      parsePosts: _.parsePosts
+    })
   },
 
   parsePosts: post.parsePosts,
 
   // Friendly alias.
-  login: _ => _.user.login,
+  login: _ => _.user.login
 })

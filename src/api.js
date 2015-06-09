@@ -8,7 +8,7 @@ export const requestPromise = Object.assign(denodeify(request), request)
 // Request with bound credentials.
 export const requestAuth = ({ request, user, pass }) =>
   request.defaults({
-    auth: { user, pass },
+    auth: { user, pass }
   })
 
 // Apply base path to given options.
@@ -44,6 +44,6 @@ export const requestCookie = ({ request, cookie }) => {
   }
 
   return request.defaults({
-    headers: { cookie },
+    headers: { cookie }
   })
 }

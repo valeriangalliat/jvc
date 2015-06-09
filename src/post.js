@@ -14,7 +14,7 @@ const months = {
   'septembre': '09',
   'octobre': '10',
   'novembre': '11',
-  'décembre': '12',
+  'décembre': '12'
 }
 
 const monthsRegex = new RegExp(Object.keys(months).join('|'))
@@ -41,7 +41,7 @@ export const parse = $item =>
     image: $item.find('.avatar img').attr('src'),
     author: $item.find('.pseudo a')[0].firstChild.data.trim(),
     date: parseDate($item.find('.date').text()),
-    post: parsePost($item.find('.post')),
+    post: parsePost($item.find('.post'))
   })
 
 export const parsePosts = html =>

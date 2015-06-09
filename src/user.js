@@ -8,7 +8,7 @@ export const getAuthParams = ({ salt }) =>
     return {
       newnom: user,
       stamp: time,
-      hash: await md5(user + pass + salt + time),
+      hash: await md5(user + pass + salt + time)
     }
   }
 
@@ -17,7 +17,7 @@ export const login = ({ self, request, getAuthParams }) =>
   async ({ user, pass, params = {} }) => {
     const response = await request.post({
       uri: 'mon_compte/connexion.php',
-      form: Object.assign({}, await getAuthParams({ user, pass }), params),
+      form: Object.assign({}, await getAuthParams({ user, pass }), params)
     })
 
     if (!response.body.connexion.erreur) {
@@ -25,25 +25,25 @@ export const login = ({ self, request, getAuthParams }) =>
         user: {
           user,
           pass,
-          cookie: response.body.connexion.cookie[0],
-        },
+          cookie: response.body.connexion.cookie[0]
+        }
       })
     }
 
     const e = response.body.connexion.erreur[0]
-    const params = qs(e.params_form[0])
+    const newParams = qs(e.params_form[0])
 
     if (e.captcha) {
       throw err('Captcha required.', {
         captcha: e.captcha[0],
-        params,
+        newParams,
 
         retry: code =>
           self.user.login({
             user,
             pass,
-            params: Object.assign({ code }, params),
-          }),
+            params: Object.assign({ code }, newParams)
+          })
       })
     }
 
