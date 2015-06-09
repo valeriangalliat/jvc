@@ -34,10 +34,16 @@
     "xml2js": "^0.4.5"
   },
   "devDependencies": {
-    "babel": "^4.5.0"
+    "babel": "^4.5.0",
+    "babel-eslint": "^3.1.14",
+    "standard": "^4.0.1"
   },
   "scripts": {
     "build": "babel src --out-dir .",
-    "prepublish": "$npm_package_scripts_build"
+    "prepublish": "npm run build",
+    "test": "cd src && standard"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }
